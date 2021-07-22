@@ -2,6 +2,7 @@ export default (http) => {
     const io = require('socket.io')(http, {
         cors:{
             origin: ["https://secretchat-socket-io.netlify.app"],
+            methods: ["GET", "POST"]
         },
     });
 
