@@ -11,7 +11,11 @@ app.use(express.json()); //used to parse res.body
 
 //request and response
 
-app.use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+// app.use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+
+app.get('/', function(req, res){
+    res.sendFile(INDEX, { root: __dirname } );
+});
 
 app.get('/api', (req,res) =>{
     res.json({
