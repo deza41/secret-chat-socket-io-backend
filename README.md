@@ -7,6 +7,7 @@ Backed server for the secret chat app which uses socket.io to relay messages in 
 Node.js
 Express.js
 Socket.io
+postgresql (Heroku)
 ```
 
 FRONT END:  https://github.com/deza41/secret-chat-socket-io-frontend \
