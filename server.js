@@ -49,7 +49,7 @@ app.post("/chatlist", async (req,res) =>{
     try{
 
          const { message } = req.body;
-         if(message ==='')
+         if(message === undefined)
          {
             res.json({
                 data: "No input",
