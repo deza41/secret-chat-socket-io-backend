@@ -49,12 +49,22 @@ app.post("/chatlist", async (req,res) =>{
     try{
 
          const { message } = req.body;
-         const newTodo = await client.query("INSERT INTO msg_log (msg_log) VALUES ($1)", [message])
-         res.json(newTodo);
+         if(message ==='')
+         {
+            res.json({
+                data: "No input",
+                port: PORT,
+            });   
+         }
+         else{
+            const newTodo = await client.query("INSERT INTO msg_log (msg_log) VALUES ($1)", [message])
+            res.json(newTodo);
+         }
 
     } catch (err){
         console.error(err.message);
     }
+
 
 
 });
