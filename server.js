@@ -61,8 +61,8 @@ app.post("/chatlist", async (req,res) =>{
 
 app.get("/chatlist", async (req,res) =>{
     try{
-        //  const newTodo = await pool.query("SELECT * FROM msg_log")
-         const newTodo = await client.query(" SELECT t.*FROM(SELECT * FROM msg_log ORDER BY msg_id DESC LIMIT 5 ) t ORDER BY t.msg_id ASC")
+         const newTodo = await client.query("SELECT * FROM msg_log")
+        //  const newTodo = await client.query(" SELECT t.*FROM(SELECT * FROM msg_log ORDER BY msg_id DESC LIMIT 5 ) t ORDER BY t.msg_id ASC")
          res.json(newTodo);
     } catch (err){
         console.error(err.message);
