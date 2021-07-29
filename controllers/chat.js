@@ -22,10 +22,11 @@ export default (http, client) => {
         });
 
         //recieve and broadcast messages to clients
-        socket.on('send-message', (message) => {
+        socket.on('send-message', async(message) => {
             console.log('Message from client: '+ socket.id + " => "+message);
             socket.broadcast.emit('receive-message', message);
-
+            const newTodo = await client.query("INSERT INTO msg_log (msg_log) VALUES ($1)", [message]);
+            console.log(newTodo);
         })
 
         //recieve and broadcast messages to clients
