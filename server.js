@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 8000;
 const pool = require("./controllers/db");
 const INDEX = '/index.html';
 
+
 app.use(express.json()); //used to parse res.body
 
 //request and response
@@ -41,7 +42,8 @@ app.post("/chatlist", async (req,res) =>{
 
 app.get("/chatlist", async (req,res) =>{
     try{
-         const newTodo = await pool.query("SELECT * FROM msg_log")
+        //  const newTodo = await pool.query("SELECT * FROM msg_log")
+         const newTodo = await pool.query(" SELECT t.*FROM(SELECT * FROM msg_log ORDER BY msg_id DESC LIMIT 5 ) t ORDER BY t.msg_id ASC", 'sslmode=require ')
          res.json(newTodo);
     } catch (err){
         console.error(err.message);
