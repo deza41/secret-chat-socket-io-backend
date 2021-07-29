@@ -1,7 +1,4 @@
-export default (http) => {
-
-    const pool = require("./db");
-
+export default (http, client) => {
 
     const io = require('socket.io')(http, {
         cors:{
@@ -14,6 +11,7 @@ export default (http) => {
         // broadcast connnected users to clients
         console.log('Connected Users:'+ io.engine.clientsCount);
         io.emit('current-Users', io.engine.clientsCount);
+        
 
         //tracks diconnects and pushes connected clients numbers
         socket.on("disconnecting", () => {
@@ -30,5 +28,19 @@ export default (http) => {
 
         })
 
+        //recieve and broadcast messages to clients
+        socket.on('last-chat', async () => {
+            const getmsg = await getQuery()
+            console.log(getmsg)
+            socket.emit('get-chat', getmsg)
+          })
+
+
+    
+
     });
+
+    async function getQuery() {
+        return await client.query(" SELECT t.*FROM(SELECT * FROM msg_log ORDER BY msg_id DESC LIMIT 5 ) t ORDER BY t.msg_id ASC")
+    }
 };

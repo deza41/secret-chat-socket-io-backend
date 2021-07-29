@@ -84,4 +84,4 @@ app.get("/chatlist", async (req,res) =>{
 
 
 http.listen(PORT, () => console.log('Server running on Port: '+PORT));
-chat(http); //make http accessable in chat.js
+chat(http, client); //make http accessable in chat.js
