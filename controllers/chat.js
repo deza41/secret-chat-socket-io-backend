@@ -1,4 +1,8 @@
 export default (http) => {
+
+    const pool = require("./db");
+
+
     const io = require('socket.io')(http, {
         cors:{
             origin: ["https://secretchat-socket-io.netlify.app"],
