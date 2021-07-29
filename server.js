@@ -52,8 +52,7 @@ app.post("/chatlist", async (req,res) =>{
          if(message === undefined)
          {
             res.json({
-                data: "No input",
-                port: PORT,
+                data: "Error: No input",
             });   
          }
          else{
